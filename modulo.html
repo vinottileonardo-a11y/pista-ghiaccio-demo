@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081A33">
+  <title>La tua pista – modulo</title>
+  <link rel="icon" href="icone/icona-192.png">
+  <style>
+    @font-face { font-family: 'Barlow'; src: url('font/BarlowSemiCondensed-Medium.ttf') format('truetype'); font-weight: 500; }
+    @font-face { font-family: 'Barlow'; src: url('font/BarlowSemiCondensed-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+    @font-face { font-family: 'Bodoni'; src: url('font/BodoniModa-Italic.ttf') format('truetype'); font-style: italic; }
+    :root { --notte: #081A33; --riga: #263d61; --argento: #B9C6D3; --neve: #F3F7FA; --gh2: #9fdcf8; --gh3: #4ea9dc; --ink: #04182e; --giallo: #F2C14E; --rosso: #ff5a6e; --verde: #4FD1A5; }
+    * { box-sizing: border-box; }
+    html { background: #040D1C; }
+    body { margin: 0; background: radial-gradient(120% 80% at 50% 0%, #143a6b, var(--notte) 60%, #040D1C) fixed; color: var(--neve); font: 500 19px/1.4 'Barlow', system-ui, sans-serif; }
+    main { max-width: 780px; margin: 0 auto; padding: 20px 16px 120px; }
+    header { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+    header img { width: 92px; height: 92px; flex: none; }
+    h1 { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 30px; line-height: 1.05; margin: 0; }
+    header p { margin: 6px 0 0; font-family: 'Bodoni', serif; font-style: italic; color: var(--gh2); font-size: 20px; }
+    .intro { color: var(--argento); margin: 10px 0 0; }
+    section { background: linear-gradient(180deg, #12233e, #0d1b31); border-radius: 18px; padding: 16px 18px 18px; margin-top: 14px; box-shadow: inset 0 0 0 1px var(--riga), 0 8px 22px rgba(0,0,0,.3); }
+    h2 { font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: 21px; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+    h2 span { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gh2); color: var(--ink); font-size: 18px; }
+    label.campo { display: block; margin-top: 12px; font-weight: 800; font-size: 17px; letter-spacing: .02em; }
+    label.campo small { display: block; font-weight: 500; color: var(--argento); font-size: 15px; letter-spacing: 0; }
+    input[type=text], input[type=number], input[type=date], input[type=time], input[type=tel], textarea {
+      width: 100%; min-height: 54px; margin-top: 6px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--riga);
+      background: #050d19; color: var(--neve); font: inherit; font-size: 19px; }
+    textarea { padding: 12px 14px; min-height: 90px; }
+    input:focus, textarea:focus { outline: none; border-color: var(--gh2); box-shadow: 0 0 0 3px rgba(143,211,245,.2); }
+    .scelte { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .scelte label { flex: 1 1 180px; display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 8px 14px; border-radius: 14px; cursor: pointer;
+      background: linear-gradient(180deg, #1c3559, #142a48); box-shadow: inset 0 0 0 1px #2a4670; font-weight: 700; }
+    .scelte input { width: 24px; height: 24px; accent-color: var(--gh2); flex: none; }
+    .scelte label:has(input:checked) { background: linear-gradient(180deg, #2a5a90, #1b3f6c); box-shadow: inset 0 0 0 2px var(--gh2); }
+    .due { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tre { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px; align-items: end; }
+    .tre b { font-size: 16px; color: var(--argento); padding-bottom: 14px; }
+    [hidden] { display: none !important; }
+    .barra { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(4,13,28,.92); backdrop-filter: blur(6px); box-shadow: 0 -1px 0 var(--riga); }
+    .barra .in { max-width: 780px; margin: 0 auto; display: flex; gap: 10px; }
+    .barra button { flex: 1; min-height: 64px; border: 0; border-radius: 16px; font: inherit; font-weight: 800; font-size: 20px; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+    .invia { color: #fff; background: linear-gradient(180deg, #2fd16b, #1b9e4c); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 -4px 0 #127a39; }
+    .copia { flex: 0 0 34% !important; color: var(--neve); background: linear-gradient(180deg, #213b62, #182d4d); box-shadow: inset 0 0 0 1px #2d4a74, inset 0 -3px 0 #0a1729; }
+    .avviso { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); background: #fff; color: var(--ink); padding: 12px 18px; border-radius: 14px; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+    .mancano { color: var(--rosso); font-weight: 800; margin-top: 10px; }
+    @media (max-width: 560px) { .due { grid-template-columns: 1fr; } h1 { font-size: 24px; } header img { width: 70px; height: 70px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="logo/logo.svg" alt="">
+    <div>
+      <h1>La tua pista del ghiaccio</h1>
+      <p>così preparo l'app su misura per te</p>
+    </div>
+  </header>
+  <p class="intro">Compila quello che sai (si salva da solo, puoi finire dopo). Alla fine tocca <b>"Manda su WhatsApp"</b>.</p>
+
+  <section>
+    <h2><span>1</span>La pista</h2>
+    <label class="campo">La pista ha un nome? <small>Es. "Pista di Andrea e Michela", "Ice Park". Se non c'è, lascia vuoto.</small>
+      <input type="text" id="nome" placeholder="nome della pista"></label>
+    <label class="campo">Dove si trova <small>Paese o città, e la piazza / il posto</small>
+      <input type="text" id="luogo" placeholder="es. Sestri Levante, piazza Matteotti"></label>
+    <label class="campo">Chi la gestisce <small>I nomi che vuoi sentire negli annunci (es. "di Andrea e Alberto"), facoltativo</small>
+      <input type="text" id="gestori" placeholder="es. Andrea e Alberto"></label>
+  </section>
+
+  <section>
+    <h2><span>2</span>Come lavorate</h2>
+    <label class="campo">Gli ingressi delle persone</label>
+    <div class="scelte">
+      <label><input type="radio" name="tipo" value="illimitato"> Tempo illimitato (paghi ed entri)</label>
+      <label><input type="radio" name="tipo" value="tempo"> A tempo, con numero/braccialetto</label>
+      <label><input type="radio" name="tipo" value="entrambi"> Tutti e due</label>
+    </div>
+    <div id="blocco-illimitato" hidden>
+      <label class="campo">Prezzo dell'ingresso (€)<input type="number" id="prezzo" inputmode="decimal" placeholder="es. 10"></label>
+    </div>
+    <div id="blocco-tempo" hidden>
+      <label class="campo">Ingressi a tempo: durate e prezzi <small>Es. 30 minuti 7 €, 1 ora 10 €, 2 ore 15 € (lascia vuote le righe che non usi)</small></label>
+      <div class="tre"><b>Durata 1</b><input type="number" id="t1min" inputmode="numeric" placeholder="minuti"><input type="number" id="t1eur" inputmode="decimal" placeholder="€"></div>
+      <div class="tre"><b>Durata 2</b><input type="number" id="t2min" inputmode="numeric" placeholder="minuti"><input type="number" id="t2eur" inputmode="decimal" placeholder="€"></div>
+      <div class="tre"><b>Durata 3</b><input type="number" id="t3min" inputmode="numeric" placeholder="minuti"><input type="number" id="t3eur" inputmode="decimal" placeholder="€"></div>
+      <label class="campo">Numeri dei braccialetti/biglietti: fino a <small>es. 200 (massimo 300)</small>
+        <input type="number" id="maxnum" inputmode="numeric" placeholder="es. 200"></label>
+    </div>
+  </section>
+
+  <section>
+    <h2><span>3</span>Pinguini a noleggio</h2>
+    <div class="scelte">
+      <label><input type="radio" name="pinguini" value="si"> Sì, li noleggiamo</label>
+      <label><input type="radio" name="pinguini" value="no"> No</label>
+    </div>
+    <div id="blocco-pinguini" hidden>
+      <div class="due">
+        <label class="campo">Quanti pinguini avete <small>numerati da 1 a…</small><input type="number" id="pnum" inputmode="numeric" placeholder="es. 15"></label>
+        <label class="campo">Prezzo del noleggio (€)<input type="number" id="peur" inputmode="decimal" placeholder="es. 5"></label>
+        <label class="campo">Durata del turno (minuti)<input type="number" id="pmin" inputmode="numeric" placeholder="es. 30"></label>
+        <label class="campo">Sollecito dopo (minuti) <small>se non lo riportano</small><input type="number" id="psol" inputmode="numeric" placeholder="es. 2"></label>
+      </div>
+    </div>
+    <label class="campo">Noleggiate anche i pattini? <small>(per ora solo per sapere)</small></label>
+    <div class="scelte">
+      <label><input type="radio" name="pattini" value="si"> Sì</label>
+      <label><input type="radio" name="pattini" value="no"> No</label>
+    </div>
+  </section>
+
+  <section>
+    <h2><span>4</span>Date e orari</h2>
+    <div class="due">
+      <label class="campo">Apertura della stagione<input type="date" id="dal"></label>
+      <label class="campo">Ultimo giorno<input type="date" id="al"></label>
+    </div>
+    <label class="campo">Orario FERIALE (lun–ven)</label>
+    <div class="due"><input type="time" id="ferApre" aria-label="feriale apre"><input type="time" id="ferChiude" aria-label="feriale chiude"></div>
+    <label class="campo">Orario FESTIVO (domeniche e feste)</label>
+    <div class="due"><input type="time" id="fesApre" aria-label="festivo apre"><input type="time" id="fesChiude" aria-label="festivo chiude"></div>
+    <label class="campo">Il sabato fa orario</label>
+    <div class="scelte">
+      <label><input type="radio" name="sabato" value="feriale"> Feriale</label>
+      <label><input type="radio" name="sabato" value="festivo"> Festivo</label>
+    </div>
+    <label class="campo">Vacanze di Natale con orario festivo <small>dal… al… (facoltativo)</small></label>
+    <div class="due"><input type="date" id="vacDal" aria-label="vacanze dal"><input type="date" id="vacAl" aria-label="vacanze al"></div>
+    <label class="campo">Giorni chiusi o orari speciali <small>Es. "chiuso 25/12 mattina", "31/12 aperto fino all'1"</small>
+      <textarea id="speciali" placeholder="scrivi qui"></textarea></label>
+  </section>
+
+  <section>
+    <h2><span>5</span>Musica, tablet e voce</h2>
+    <label class="campo">La musica</label>
+    <div class="scelte">
+      <label><input type="radio" name="musica" value="youtube"> YouTube</label>
+      <label><input type="radio" name="musica" value="spotify"> Spotify Premium</label>
+      <label><input type="radio" name="musica" value="nessuna"> Ce l'ho a parte</label>
+    </div>
+    <label class="campo">Il tablet</label>
+    <div class="scelte">
+      <label><input type="radio" name="tablet" value="ipad"> iPad</label>
+      <label><input type="radio" name="tablet" value="android"> Tablet Android</label>
+      <label><input type="radio" name="tablet" value="da-comprare"> Ancora da comprare</label>
+    </div>
+    <label class="campo">C'è internet in pista?</label>
+    <div class="scelte">
+      <label><input type="radio" name="internet" value="si"> Sì, sempre</label>
+      <label><input type="radio" name="internet" value="a-volte"> A volte</label>
+      <label><input type="radio" name="internet" value="no"> No</label>
+    </div>
+    <label class="campo">Voce degli annunci</label>
+    <div class="scelte">
+      <label><input type="radio" name="voce" value="donna"> Donna</label>
+      <label><input type="radio" name="voce" value="uomo"> Uomo</label>
+      <label><input type="radio" name="voce" value="indifferente"> Fai tu</label>
+    </div>
+    <label class="campo">Un annuncio a rotazione ogni quanti minuti? <small>es. 20</small>
+      <input type="number" id="giro" inputmode="numeric" placeholder="es. 20"></label>
+    <label class="campo">Frasi particolari, sponsor, regole della vostra pista <small>facoltativo</small>
+      <textarea id="frasi" placeholder="es. 'Ricordate: casco obbligatorio sotto i 10 anni', 'Bar del Corso, sponsor della pista'"></textarea></label>
+  </section>
+
+  <section>
+    <h2><span>6</span>Contatto</h2>
+    <div class="due">
+      <label class="campo">Il tuo nome<input type="text" id="chi" placeholder="nome"></label>
+      <label class="campo">Telefono <small>facoltativo</small><input type="tel" id="tel" placeholder="numero"></label>
+    </div>
+    <p class="mancano" id="mancano" hidden></p>
+  </section>
+</main>
+
+<div class="barra"><div class="in">
+  <button class="copia" id="copia">Copia</button>
+  <button class="invia" id="invia">💬 Manda su WhatsApp</button>
+</div></div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const scelta = n => document.querySelector(`input[name="${n}"]:checked`)?.value || '';
+  const CAMPI = ['nome', 'luogo', 'gestori', 'prezzo', 't1min', 't1eur', 't2min', 't2eur', 't3min', 't3eur', 'maxnum', 'pnum', 'peur', 'pmin', 'psol',
+    'dal', 'al', 'ferApre', 'ferChiude', 'fesApre', 'fesChiude', 'vacDal', 'vacAl', 'speciali', 'giro', 'frasi', 'chi', 'tel'];
+  const SCELTE = ['tipo', 'pinguini', 'pattini', 'sabato', 'musica', 'tablet', 'internet', 'voce'];
+  const BOZZA = 'modulo_pista_bozza';
+
+  function aggiornaBlocchi() {
+    const t = scelta('tipo');
+    $('blocco-illimitato').hidden = !(t === 'illimitato' || t === 'entrambi');
+    $('blocco-tempo').hidden = !(t === 'tempo' || t === 'entrambi');
+    $('blocco-pinguini').hidden = scelta('pinguini') !== 'si';
+  }
+  function salva() {
+    const d = {};
+    CAMPI.forEach(k => { d[k] = $(k).value; });
+    SCELTE.forEach(k => { d[k] = scelta(k); });
+    try { localStorage.setItem(BOZZA, JSON.stringify(d)); } catch { /* niente */ }
+    return d;
+  }
+  function carica() {
+    let d = {};
+    try { d = JSON.parse(localStorage.getItem(BOZZA) || '{}'); } catch { d = {}; }
+    CAMPI.forEach(k => { if (d[k]) $(k).value = d[k]; });
+    SCELTE.forEach(k => { if (d[k]) { const r = document.querySelector(`input[name="${k}"][value="${d[k]}"]`); if (r) r.checked = true; } });
+    aggiornaBlocchi();
+  }
+  document.addEventListener('input', () => { aggiornaBlocchi(); salva(); });
+  document.addEventListener('change', () => { aggiornaBlocchi(); salva(); });
+
+  const dIt = s => s ? s.split('-').reverse().join('/') : '—';
+  const nTxt = (v, suf = '') => (v === '' || v == null) ? '—' : `${v}${suf}`;
+  const ETI = { illimitato: 'tempo illimitato', tempo: 'a tempo (numerati)', entrambi: 'tempo illimitato + a tempo', youtube: 'YouTube', spotify: 'Spotify Premium', nessuna: 'a parte',
+    ipad: 'iPad', android: 'tablet Android', 'da-comprare': 'da comprare', si: 'sì', no: 'no', 'a-volte': 'a volte', donna: 'donna', uomo: 'uomo', indifferente: 'fai tu', feriale: 'feriale', festivo: 'festivo' };
+  const e = v => ETI[v] || v || '—';
+
+  function messaggio() {
+    const d = salva();
+    const r = [];
+    r.push('🧊 *NUOVA PISTA – modulo per l\'app*');
+    r.push(`*Pista:* ${d.nome || '(senza nome)'}`);
+    r.push(`*Dove:* ${d.luogo || '—'}`);
+    if (d.gestori) r.push(`*Gestori:* ${d.gestori}`);
+    r.push('');
+    r.push(`*Ingressi:* ${e(d.tipo)}`);
+    if (d.tipo === 'illimitato' || d.tipo === 'entrambi') r.push(`• prezzo ingresso: ${nTxt(d.prezzo, ' €')}`);
+    if (d.tipo === 'tempo' || d.tipo === 'entrambi') {
+      [1, 2, 3].forEach(i => { if (d[`t${i}min`]) r.push(`• ${d[`t${i}min`]} min → ${nTxt(d[`t${i}eur`], ' €')}`); });
+      r.push(`• braccialetti fino al n° ${nTxt(d.maxnum)}`);
+    }
+    r.push(`*Pinguini:* ${e(d.pinguini)}${d.pinguini === 'si' ? ` – ${nTxt(d.pnum)} pinguini, ${nTxt(d.peur, ' €')}, turno ${nTxt(d.pmin, ' min')}, sollecito dopo ${nTxt(d.psol, ' min')}` : ''}`);
+    r.push(`*Pattini a noleggio:* ${e(d.pattini)}`);
+    r.push('');
+    r.push(`*Stagione:* dal ${dIt(d.dal)} al ${dIt(d.al)}`);
+    r.push(`*Feriale:* ${d.ferApre || '—'}–${d.ferChiude || '—'}  ·  *Festivo:* ${d.fesApre || '—'}–${d.fesChiude || '—'}  ·  sabato ${e(d.sabato)}`);
+    if (d.vacDal || d.vacAl) r.push(`*Vacanze (orario festivo):* dal ${dIt(d.vacDal)} al ${dIt(d.vacAl)}`);
+    if (d.speciali) r.push(`*Giorni speciali:* ${d.speciali}`);
+    r.push('');
+    r.push(`*Musica:* ${e(d.musica)}  ·  *Tablet:* ${e(d.tablet)}  ·  *Internet:* ${e(d.internet)}`);
+    r.push(`*Voce:* ${e(d.voce)}  ·  *Annuncio a rotazione ogni:* ${nTxt(d.giro, ' min')}`);
+    if (d.frasi) r.push(`*Frasi/sponsor:* ${d.frasi}`);
+    r.push('');
+    r.push(`*Compilato da:* ${d.chi || '—'}${d.tel ? ' – ' + d.tel : ''}`);
+    r.push('');
+    r.push('DATI:' + JSON.stringify(d)); // riga per Leonardo: si legge in automatico
+    return r.join('\n');
+  }
+  function controlla() {
+    const d = salva(), manca = [];
+    if (!d.luogo) manca.push('dove si trova');
+    if (!d.tipo) manca.push('come lavorate');
+    if (!d.pinguini) manca.push('pinguini sì/no');
+    if (!d.dal || !d.al) manca.push('date della stagione');
+    $('mancano').hidden = !manca.length;
+    $('mancano').textContent = manca.length ? 'Manca ancora: ' + manca.join(', ') + ' (puoi mandarlo lo stesso)' : '';
+  }
+  function avviso(t) { const a = document.createElement('div'); a.className = 'avviso'; a.textContent = t; document.body.append(a); setTimeout(() => a.remove(), 2500); }
+
+  $('invia').addEventListener('click', () => {
+    controlla();
+    window.open('https://wa.me/?text=' + encodeURIComponent(messaggio()), '_blank');
+  });
+  $('copia').addEventListener('click', async () => {
+    controlla();
+    try { await navigator.clipboard.writeText(messaggio()); avviso('Copiato: incollalo su WhatsApp'); }
+    catch { avviso('Non riesco a copiare: usa "Manda su WhatsApp"'); }
+  });
+  carica();
+</script>
+</body>
+</html>
