@@ -423,6 +423,12 @@
   "testo": "Luci, musica e ghiaccio: la magia dell'inverno è arrivata in città! Pista del Ghiaccio... scivolare non è mai stato così bello!"
  },
  {
+  "id": "demo_avviso",
+  "file": "demo_avviso.mp3",
+  "categoria": "annunci",
+  "testo": "Questa è una versione dimostrativa dell'app della pista. Per avere la versione completa, con il nome della tua pista, contatta Leonardo!"
+ },
+ {
   "id": "jingle_richiamo",
   "file": "jingle_richiamo.mp3",
   "categoria": "jingle",
