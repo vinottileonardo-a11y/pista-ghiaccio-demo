@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081A33">
+  <title>Prova la DEMO – Pista del Ghiaccio</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icone/icona-192.png">
+  <link rel="apple-touch-icon" href="icone/icona-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pista DEMO">
+  <style>
+    @font-face { font-family: 'Bodoni'; src: url('font/BodoniModa-Italic.ttf') format('truetype'); font-style: italic; }
+    @font-face { font-family: 'Barlow'; src: url('font/BarlowSemiCondensed-Medium.ttf') format('truetype'); font-weight: 500; }
+    @font-face { font-family: 'Barlow'; src: url('font/BarlowSemiCondensed-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+    :root { --notte: #081A33; --lastra: #0F2748; --riga: #263d61; --argento: #B9C6D3; --neve: #F3F7FA; --gh2: #9fdcf8; --gh3: #4ea9dc; --ink: #04182e; --giallo: #F2C14E; }
+    * { box-sizing: border-box; }
+    html { background: #040D1C; }
+    body { margin: 0; background: radial-gradient(120% 80% at 50% 0%, #143a6b, var(--notte) 60%, #040D1C) fixed; color: var(--neve); font: 500 20px/1.45 'Barlow', system-ui, sans-serif; }
+    main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+    header { display: flex; align-items: center; gap: 22px; }
+    header img { width: 150px; height: 150px; flex: none; }
+    h1 { font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 40px; line-height: 1; margin: 0; }
+    header p { margin: 8px 0 0; font-family: 'Bodoni', serif; font-style: italic; color: var(--gh2); font-size: 24px; }
+    h2 { font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: 24px; margin: 0 0 8px; color: #fff; }
+    .riquadro { background: linear-gradient(180deg, #12233e, #0d1b31); border-radius: 18px; padding: 18px 22px; margin-top: 16px; box-shadow: inset 0 0 0 1px var(--riga), 0 8px 22px rgba(0,0,0,.3); }
+    .apri { display: flex; align-items: center; justify-content: center; margin-top: 18px; min-height: 92px; border-radius: 22px; text-decoration: none;
+      font-weight: 800; font-size: 34px; letter-spacing: .08em; color: var(--ink);
+      background: linear-gradient(160deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 40%), linear-gradient(180deg, #e3f6ff 0%, #a6defa 48%, #5db3e3 100%);
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.9), inset 0 -6px 0 #2f86bb, 0 18px 40px rgba(0,0,0,.45); }
+    ol, ul { margin: 6px 0 0; padding-left: 24px; }
+    li { margin: 6px 0; }
+    b.c { color: var(--gh2); }
+    .due { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .nota { margin-top: 16px; padding: 14px 18px; border-radius: 14px; background: rgba(242,193,78,.12); box-shadow: inset 0 0 0 1px var(--giallo); }
+    @media (max-width: 700px) { .due { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; } h1 { font-size: 32px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="logo/logo.svg" alt="">
+    <div>
+      <h1>Pista del Ghiaccio · DEMO</h1>
+      <p>l'app che gestisce la pista: cassa, pinguini, voci e musica</p>
+    </div>
+  </header>
+
+  <a class="apri" href="./">▶ APRI LA DEMO</a>
+
+  <section class="riquadro">
+    <h2>Cosa fa</h2>
+    <ul>
+      <li><b class="c">Cassa:</b> ingressi con un tocco, totale del giorno sempre aggiornato, annullamenti registrati.</li>
+      <li><b class="c">Pinguini a tempo:</b> conto alla rovescia per ogni pinguino e <b>richiamo a voce per numero</b> quando il tempo finisce.</li>
+      <li><b class="c">Voci professionali:</b> benvenuto, regole, apertura e chiusura, spot della pista a rotazione, auguri. Nella versione vera dicono il nome della TUA pista.</li>
+      <li><b class="c">Musica:</b> da YouTube (o Spotify) che va in pausa da sola durante gli annunci.</li>
+      <li><b class="c">Statistiche:</b> incassi per giorno e per ora, col meteo, festivi e feriali.</li>
+      <li>Funziona su <b>iPad</b> e <b>tablet Android</b>, anche <b>senza internet</b>.</li>
+    </ul>
+  </section>
+
+  <section class="riquadro">
+    <h2>Provala in 2 minuti</h2>
+    <ol>
+      <li>Alza il volume e tocca <b>AVVIA GIORNATA</b>: parte la fanfara e il benvenuto.</li>
+      <li><b>Pinguini:</b> noleggiane uno. Nella demo il turno dura <b>1 minuto</b>: poi senti il richiamo.</li>
+      <li><b>Suoni:</b> prova gli spot e le altre voci.</li>
+      <li><b>Statistiche:</b> tocca <b>"Dati di esempio"</b> per vedere i grafici pieni.</li>
+      <li>In ogni pagina il pulsante giallo <b>❔ GUIDA</b> spiega tutto.</li>
+    </ol>
+  </section>
+
+  <section class="riquadro">
+    <h2>Vuoi l'icona sulla schermata Home?</h2>
+    <div class="due">
+      <div><b>iPad / iPhone (Safari)</b><br>Condividi (quadrato con la freccia ↑) → <b>Aggiungi alla schermata Home</b>.</div>
+      <div><b>Android (Chrome)</b><br>Menu ⋮ in alto a destra → <b>Aggiungi a schermata Home</b> (o <b>Installa app</b>).</div>
+    </div>
+  </section>
+
+  <p class="nota">È una <b>demo</b>: i dati restano solo sul tuo dispositivo e puoi provare tutto senza paura di rompere niente.</p>
+</main>
+</body>
+</html>
